@@ -53,8 +53,8 @@ $(document).on('ready', function(){
         '</div>');
         
         
-        var leftPos = e.pageX + 10;
-        var topPos = e.pageY + 10;
+        var leftPos = e.clientX + 10;
+        var topPos = e.clientY + 10;
         $('.listings-programm__tooltip').css({'left': leftPos, 'top': topPos});
         
       });
