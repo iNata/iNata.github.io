@@ -4,6 +4,7 @@ $(document).on('ready', function(){
   
   $(document).on('click', '.js_day-nav', function(){
     $(this).addClass('active').siblings().removeClass('active');
+    return false;
   });
   
   // custom scrollbar init
@@ -82,6 +83,7 @@ $(document).on('ready', function(){
   
   $(document).on('click', '.js_online-btn', function(){
     $('.listings-programm__online').show();
+    return false;
   });
   
   $(document).on('click', '.js_online-close', function(){
