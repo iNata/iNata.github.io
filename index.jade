@@ -1,0 +1,75 @@
+extends ./templates/page.jade
+
+block content
+  section.listings
+    .listings__wrapper
+      .listings-day__block
+        .listings-day__table
+          -
+            var week = [{date:"25", day:"пн", current: true},{date:"26", day:"вт"},{date:"27", day:"ср"},{date:"28", day:"чт"},{date:"29", day:"пт"},{date:"30", day:"сб"},{date:"1", day:"вс"}]
+          each weekItem in week
+            .listings-day__item.js_day-nav(class=weekItem.current == true ? 'active' : "")
+              a.listings-day__link(href="#")
+                span= weekItem.date
+                =", "
+                span=weekItem.day
+      .listings-channel__block
+        -
+          var channel = [{logo: 'resources/img/logo_channel1.png', frame: 'https://stream.1tv.ru/embed'}, {logo: 'resources/img/logo_channel_kultura.png', frame:'https://player.vgtrk.com/iframe/live/id/19201/start_zoom/true/showZoomBtn/true/'}, {logo: 'resources/img/logo_channel_2x2.jpg', frame: 'http://videoshara.net/live/partner/63/113/'},{logo: 'resources/img/logo_channel_matchtv.png', frame: ''},{logo: 'resources/img/logo_channel_ctc.png', frame: 'http://www.corbina.tv/flash/swf/player.swf?aplay=1&amp;screen=1&amp;cvs=2-111-1&amp;bufferTime=4&amp;uilive=1&amp;videotitle=СТС'}]
+        each channelItem in channel
+          .listings-channel__item
+            span.listings-channel__logo(style='background-image:url( #{channelItem.logo})')
+            a.listings-channel__online-btn.js_online-btn(href="#", data-frame="#{channelItem.frame}") смотреть эфир
+      .listings-programm__block
+        .listings-programm__online
+          span.listing-programm__online-close.js_online-close x          
+          iframe(itemprop='video', scrolling='no', src='//stream.1tv.ru/embed', allowfullscreen='1', frameborder='0')
+        .listings-programm__content.js_customscroll
+          .listings-programm__scedule-block
+            .listings-programm__scedule
+              -
+                var scedule = ['5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30','00:00','00:30', '1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30']
+              each sceduleItem in scedule              
+                .listings-programm__scedule-item
+                  span= sceduleItem
+          .listings-programm__row
+            -
+              var programm = [{title: 'Телеканал "Доброе утро"', time: '5:00', duration: 240},{title: 'Новости', time: '9:00', duration: 20},{title: 'Контрольная закупка', time: '9:20', duration: 30},{title: 'Жить здорово!', time: '9:50', duration: 65},{title: 'Модный приговор', time: '10:55', duration: 65},{title: 'Новости с субтитрами', time: '12:00', duration: 15},{title: 'Пусть говорят', time: '12:15', duration: 70},{title: 'Таблетка', time: '13:25', duration: 30},{title: 'Время покажет', time: '13:55', duration: 65},{title: 'Новости с субтитрами', time: '15:00', duration: 15},{title: 'Время покажет', time: '15:15', duration: 45},{title: 'Мужское / Женское', time: '16:00', duration: 60},{title: 'Наедине со всеми', time: '17:00', duration: 60},{title: 'Вечерние новости с субтитрами', time: '18:00', duration: 45},{title: 'Давай поженимся!', time: '18:45', duration: 65},{title: '"Пусть говорят" с Андреем Малаховым', time: '19:50', duration: 70},{title: 'Время', time: '21:00', duration: 30},{title: 'Маргарита Назарова (9-я и 10-я серии)', time: '21:30', duration: 120},{title: 'Вечерний Ургант', time: '23:30', duration: 30},{title: 'Познер (Татьяна Черниговская)', time: '0:00', duration: 60},{title: 'Ночные новости', time: '1:00', duration: 15},{title: 'Время покажет', time: '1:15', duration: 50},{title: 'Наедине со всеми', time: '2:05', duration: 55},{title: 'Новости', time: '3:00', duration: 5},{title: 'Модный приговор', time: '3:05', duration: 65},{title: 'Контрольная закупка', time: '4:10', duration: 50}]
+            each programmItem in programm
+              .listings-programm.js_programm-width.js_programm-tooltip(data-duration="#{programmItem.duration}" )
+                .listings-programm__info
+                  .listings-programm__title= programmItem.title
+                  .listings-programm__time= programmItem.time
+              
+          .listings-programm__row
+            -
+              var programm = [{title: 'Нет эфира', time: '5:00', duration: 120},{title: 'Евроньюс', time: '7:00', duration: 180 },{title: 'Новости культуры', time: '10:00', duration: 15},{title: 'Наблюдатель', time: '10:15', duration: 60},{title: 'Пограничный горизонт', time: '11:15', duration: 60},{title: 'Линия жизни (Эдуард Кочергин)', time: '12:15', duration: 55},{title: 'Александр Невский', time: '13:10', duration: 110},{title: 'Новости культуры', time: '15:00', duration: 10},{title: 'Полет с осенними ветрами', time: '15:10', duration: 55},{title: 'Тот самый Мюнхгаузен', time: '16:05', duration: 135},{title: 'Роберт Фолкон Скотт', time: '18:20', duration: 10},{title: 'Иоганн Себастьян Бах - композитор и богослов', time: '18:30', duration: 45},{title: 'Спокойной ночи, малыши!', time: '19:15', duration: 15},{title: 'Новости культуры', time: '19:30', duration: 15},{title: 'Главная роль', time: '19:45', duration: 20},{title: 'Сати. Нескучная классика... (Вениамин Смехов)', time: '20:05', duration: 40},{title: 'Правила жизни (Выпуск от 25 апреля)', time: '20:45', duration: 25},{title: '"Тем временем" с Александром Архангельским', time: '21:10', duration: 45},{title: 'Пришелец', time: '21:55', duration: 45},{title: 'Зона молчания. Чернобыль', time: '22:40', duration: 50},{title: 'Новости культуры', time: '23:30', duration: 15},{title: 'Худсовет', time: '23:45', duration: 5}, {title: 'Достоевский (5-я серия)', time: '23:50', duration: 55},{title: '"Кинескоп" с Петром Шепотинником (Роттердамский МКФ)', time: '00:45', duration: 40}, {title: 'Аксум', time: '1:25', duration: 15}, {title: 'Наблюдатель', time: '1:40', duration: 60}, {title: 'Э. Григ. Сюита для оркестра из музыки к драме Ибсена "Пер Гюнт"', time: '2:40', duration: 60}, {title: 'Нет эфира', time:'3:40', duration: 80} ]
+            each programmItem in programm
+              .listings-programm.js_programm-width.js_programm-tooltip(data-duration="#{programmItem.duration}" )
+                .listings-programm__info
+                  .listings-programm__title= programmItem.title
+                  .listings-programm__time= programmItem.time
+          .listings-programm__row
+            -
+              var programm = [{title: 'Нет эфира', time: '5:00', duration: 5},{title: 'Атака титанов (19-я серия)', time: '5:05', duration: 30},{title: 'Атака титанов (20-я серия)', time: '5:35', duration: 25}, {title: 'Русские мультфильмы', time: '6:00', duration: 45},{title: 'Покемон (21-я серия)', time: '6:45', duration: 25},{title: 'Покемон (22-я серия)', time: '7:10', duration: 25},{title: 'Крутые бобры (41-я серия)', time: '7:35', duration: 30},{title: 'Клиника (138-я серия - "Мой кролик")', time: '8:05', duration: 25},{title: 'Клиника (139-я серия - "Моя точка невозврата")', time: '8:30', duration: 25},{title: 'Царь горы (14-я серия)', time: '8:55', duration: 30}, {title: 'Царь горы (15-я серия)', time: '9:25', duration: 25},{title: 'Пингвины Мадагаскара (13-я серия)', time: '9:50', duration: 30},{title: 'Пингвины Мадагаскара (14-я серия)', time: '10:20', duration: 25},{title: 'Пингвины Мадагаскара (15-я серия)', time: '10:45', duration: 25},{title: 'Пингвины Мадагаскара (16-я серия)', time: '11:10', duration: 30},{title: 'Пингвины Мадагаскара (17-я серия)', time: '11:40', duration: 25},{title: 'Пингвины Мадагаскара (18-я серия)', time: '12:05', duration: 30}, {title: 'Пингвины Мадагаскара (19-я серия)', time: '12:35', duration: 30},{title: 'Пингвины Мадагаскара (20-я серия)', time: '13:05', duration: 25},{title: 'Санджей и Крейг (15-я серия)', time: '13:30', duration: 25},{title: 'Санджей и Крейг (16-я серия)', time: '13:55', duration: 30},{title: 'Санджей и Крейг (17-я серия)', time: '14:25', duration: 25},{title: 'Санджей и Крейг (18-я серия)', time: '14:50', duration: 30},{title: 'Черепашки-ниндзя (13-я серия)', time: '15:20', duration: 25}, {title: 'Черепашки-ниндзя (14-я серия)', time: '15:45', duration: 25}, {title: 'Черепашки-ниндзя (15-я серия)', time: '16:10', duration: 30},{title: 'Черепашки-ниндзя (16-я серия)', time: '16:40', duration: 25}, {title: 'Черепашки-ниндзя (17-я серия)', time: '17:05', duration: 25},{title: 'Черепашки-ниндзя (18-я серия)', time: '17:30', duration: 25},{title: 'Симпсоны (5-я серия)', time: '17:55', duration: 30},{title: 'Симпсоны (6-я серия)', time: '18:25', duration: 25},{title: 'Симпсоны (7-я серия)', time: '18:50', duration: 30},{title: 'Марафон хитов ("Симпсоны". 26 сезон. 5-я - 6-я серии. "Американский папаша". 11)', time: '19:20', duration: 100},{title: 'Симпсоны (15-я серия)', time: '21:00', duration: 21},{title: 'Симпсоны (16-я серия)', time: '21:21', duration: 29},{title: 'Гриффины (10-я серия)', time: '21:50', duration: 32}, {title: 'Гриффины (11-я серия)', time: '22:22', duration: 23}, {title: 'Бессмертное кино (11-я серия)', time: '22:45', duration: 25},{title: 'Фарго (6-я серия)', time: '23:10', duration: 60}, {title: 'Южный парк (6-я серия - "201")', time: '0:10', duration: 20},{title: 'Клиника (138-я серия - "Мой кролик")', time: '0:30', duration: 30},{title: 'Клиника (139-я серия - "Моя точка невозврата")', time: '1:00', duration: 30},{title: 'WWE RAW (195-я серия)', time: '1:30', duration: 55}, {title: 'Крутые бобры (41-я серия)', time: '2:25', duration: 30},{title: 'Нет эфира', time: '2:55', duration:125} ]
+            each programmItem in programm
+              .listings-programm.js_programm-width.js_programm-tooltip(data-duration="#{programmItem.duration}" )
+                .listings-programm__info
+                  .listings-programm__title= programmItem.title
+                  .listings-programm__time= programmItem.time
+          .listings-programm__row
+            -
+              var programm = [{title: 'Нет эфира', time: '5:00', duration: 5},{title: 'Евро-2016. Быть в теме', time: '5:05', duration: 30},{title: 'Решить и сделать', time: '5:35', duration: 55},{title: 'Ты можешь больше!', time: '6:30', duration: 60},{title: 'Новости', time: '7:30', duration: 5},{title: 'Все на Матч!', time: '7:35', duration: 115},{title: 'Новости', time: '9:30', duration: 5},{title: 'Олимпийский спорт', time: '9:35', duration: 30},{title: 'Новости', time: '10:05', duration: 10},{title: 'Футбол. Чемпионат Англии', time: '10:15', duration: 125},{title: 'Новости', time: '12:20', duration: 5},{title: 'Все на Матч!', time: '12:25', duration: 35},{title: 'Смешанные единоборства. Bellator', time: '13:00', duration: 100},{title: 'Специальный репортаж (Точка. Сбежавшая сборная)', time: '14:40', duration: 35},{title: 'Новости', time: '15:15', duration: 5},{title: 'Все на Матч!', time: '15:20', duration: 35},{title: 'Футбол. Чемпионат Италии. Прямая трансляция ("Рома" - "Наполи")', time: '15:55', duration: 125},{title: 'Новости', time: '18:00', duration: 5},{title: 'Волейбол. Чемпионат России. Женщины. "Финал четырех". Прямая трансляция ("Динамо-Казань" - "Уралочка" (Екатеринбург))', time: '18:05', duration: 135},{title: 'Спортивный интерес', time: '20:20', duration: 70},{title: 'Лицом к лицу (Англия)', time: '21:30', duration: 25},{title: 'Футбол. Чемпионат Англии. Прямая трансляция ("Тоттенхэм" - "Вест Бромвич")', time: '21:55', duration: 125},{title: 'Все на Матч!', time: '00:00', duration: 45},{title: 'Украденная победа', time: '00:45', duration: 30},{title: '1+1', time: '1:15', duration: 45},{title: 'Решающий год Стивена Джерарда', time: '02:00', duration: 60},{title: 'Судьба Бэнджи', time: '03:00', duration: 80},{title: 'Бой без правил', time: '04:20', duration: 40} ]
+            each programmItem in programm
+              .listings-programm.js_programm-width.js_programm-tooltip(data-duration="#{programmItem.duration}" )
+                .listings-programm__info
+                  .listings-programm__title= programmItem.title
+                  .listings-programm__time= programmItem.time
+          .listings-programm__row
+            -
+              var programm = [{title: 'Нет эфира', time: '5:00', duration: 50},{title: 'Музыка на СТС', time: '5:50', duration: 10},{title: 'Люди в чёрном', time: '6:00', duration: 60},{title: 'Взвешенные люди', time: '7:00', duration: 120},{title: 'Ералаш', time: '9:00', duration: 80},{title: 'Гамбит', time: '10:20', duration: 100},{title: 'Шоу "Уральских пельменей" ("Хочу всё ржать", 1-я часть)', time: '12:00', duration: 90},{title: 'Уральские пельмени (Спортивное)', time: '13:30', duration: 30},{title: 'Такси-2', time: '14:00', duration: 95},{title: 'Такси-3', time: '15:35', duration: 85},{title: 'Кухня', time: '17:00', duration: 210},{title: 'Вечный отпуск', time: '20:30', duration: 30},{title: 'Крыша мира', time: '21:00', duration: 30},{title: 'Блондинка в законе', time: '21:30', duration: 110},{title: 'Шоу "Уральских пельменей" ("Тень знаний", 1-я часть)', time: '23:20', duration: 40},{title: 'Шоу "Уральских пельменей" ("Тень знаний", 2-я часть)', time: '00:00', duration: 30},{title: '"Кино в деталях" с Фёдором Бондарчуком', time: '0:30', duration: 60},{title: '6 кадров', time: '1:30', duration: 15},{title: 'Крыша мира', time: '1:45', duration: 30},{title: 'Вечный отпуск', time: '2:15', duration: 30},{title: 'Пан Американ', time: '2:45', duration: 55},{title: 'Маргоша', time: '3:40', duration: 80} ]
+            each programmItem in programm
+              .listings-programm.js_programm-width.js_programm-tooltip(data-duration="#{programmItem.duration}" )
+                .listings-programm__info
+                  .listings-programm__title= programmItem.title
+                  .listings-programm__time= programmItem.time
